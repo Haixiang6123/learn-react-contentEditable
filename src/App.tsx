@@ -13,13 +13,18 @@ function App() {
     if (!innerRef.current) {
       return;
     }
-    innerRef.current.innerHTML += '&nbsp;<button contenteditable="false">Hello</button>&nbsp;'
+    innerRef.current.innerHTML += '&nbsp;<button contenteditable="false">姓名</button>&nbsp;'
   }
 
   return (
     <div className="App">
-      <ContentEditable innerRef={innerRef} html={value.current} onChange={onChange} />
-      <button onClick={onAddButton}>Add Button</button>
+      <ContentEditable
+        style={{ border: '1px solid black', height: 100 }}
+        innerRef={innerRef}
+        html={value.current}
+        onChange={onChange}
+      />
+      <button onClick={onAddButton}>添加姓名</button>
     </div>
   );
 }
