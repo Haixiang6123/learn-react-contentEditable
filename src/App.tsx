@@ -11,7 +11,7 @@ function App() {
 
   const onAddButton = () => {
     // @ts-ignore
-    innerRef.current.innerHTML += '<button contenteditable="false">Hello</button>'
+    innerRef.current.innerHTML += '&nbsp;<button contenteditable="false">Hello</button>&nbsp;'
   }
 
   return (
