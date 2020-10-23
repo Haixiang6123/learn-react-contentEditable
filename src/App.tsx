@@ -1,16 +1,21 @@
-import React, {useState} from 'react'
-import VarInput from "./lib/VarInput"
+import React, {useRef} from 'react'
+import ContentEditable, {ContentEditableEvent} from "react-contenteditable"
 
 function App() {
-  const [value] = useState('');
+  const value = useRef('');
 
-  const onChange = (value: string) => {
-    console.log(value);
+  const onChange = (event: ContentEditableEvent) => {
+    value.current = event.target.value;
+  }
+
+  const onAddButton = () => {
+    value.current += '<button contenteditable="false">Hello</button>';
   }
 
   return (
     <div className="App">
-      <VarInput value={value} onInput={onChange} />
+      <ContentEditable html={value.current} onChange={onChange} />
+      <button onClick={onAddButton}>Add Button</button>
     </div>
   );
 }
