@@ -2,15 +2,17 @@ import React, {useRef} from 'react'
 import ContentEditable, {ContentEditableEvent} from "react-contenteditable"
 
 function App() {
-  const innerRef = useRef(null);
-  const value = useRef('');
+  const innerRef = useRef<HTMLElement>(null);
+  const value = useRef<string>('');
 
   const onChange = (event: ContentEditableEvent) => {
     value.current = event.target.value;
   }
 
   const onAddButton = () => {
-    // @ts-ignore
+    if (!innerRef.current) {
+      return;
+    }
     innerRef.current.innerHTML += '&nbsp;<button contenteditable="false">Hello</button>&nbsp;'
   }
 
