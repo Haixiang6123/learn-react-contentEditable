@@ -2,6 +2,7 @@ import React, {useRef} from 'react'
 import ContentEditable, {ContentEditableEvent} from "react-contenteditable"
 
 function App() {
+  const innerRef = useRef(null);
   const value = useRef('');
 
   const onChange = (event: ContentEditableEvent) => {
@@ -9,12 +10,13 @@ function App() {
   }
 
   const onAddButton = () => {
-    value.current += '<button contenteditable="false">Hello</button>';
+    // @ts-ignore
+    innerRef.current.innerHTML += '<button contenteditable="false">Hello</button>'
   }
 
   return (
     <div className="App">
-      <ContentEditable html={value.current} onChange={onChange} />
+      <ContentEditable innerRef={innerRef} html={value.current} onChange={onChange} />
       <button onClick={onAddButton}>Add Button</button>
     </div>
   );
